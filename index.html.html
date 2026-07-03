@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giorgia Bondandini — Data Scientist</title>
+<meta name="description" content="Portfolio di data science: analisi urbane, machine learning e automazione. Torino.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F2EA;
+    --paper-2:#ECE6D4;
+    --ink:#4A4530;
+    --ink-2:#5C5638;
+    --amber:#EAA429;
+    --amber-deep:#B85A31;
+    --slate:#8A7C55;
+    --line:#E0D5B7;
+    --green:#7FAC98;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  ::selection{ background:var(--amber); color:var(--paper); }
+
+  .wrap{ max-width:960px; margin:0 auto; padding:0 32px; }
+
+  a{ color:inherit; }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(245,242,234,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; letter-spacing:0.02em;
+    text-decoration:none;
+  }
+  .brand b{ color:var(--amber-deep); }
+  nav ul{
+    list-style:none; display:flex; gap:28px;
+  }
+  nav a{
+    text-decoration:none; font-size:14px; color:var(--slate);
+    transition:color .15s ease;
+  }
+  nav a:hover{ color:var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 72px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-signal{
+    position:absolute; right:-40px; top:20px; width:420px; height:420px;
+    opacity:0.55; pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--amber-deep);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; background:var(--amber); display:inline-block;
+  }
+  h1.name{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(40px, 6vw, 64px);
+    line-height:1.05;
+    max-width:680px;
+    letter-spacing:-0.01em;
+  }
+  .hero p.tagline{
+    margin-top:22px;
+    max-width:520px;
+    font-size:17px;
+    color:var(--slate);
+  }
+  .hero-meta{
+    margin-top:36px;
+    display:flex; flex-wrap:wrap; gap:10px 28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--slate);
+  }
+  .hero-meta span b{ color:var(--ink); font-weight:500; }
+  .hero-actions{
+    margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px;
+    font-size:14px; font-weight:500;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:all .15s ease;
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--amber-deep); border-color:var(--amber-deep); }
+  .btn:not(.primary):hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- section shell ---------- */
+  section{ padding:72px 0; border-bottom:1px solid var(--line); }
+  section.dark{
+    background:var(--ink); color:var(--paper);
+    border-bottom:none;
+  }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:40px; gap:20px; flex-wrap:wrap;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--amber-deep);
+  }
+  section.dark .section-tag{ color:var(--amber); }
+  h2{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size:30px;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:56px;
+  }
+  .about-grid p{ margin-bottom:16px; color:var(--ink-2); max-width:52ch; }
+  .stack-list{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+  }
+  .stack-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:16px;
+    padding:10px 0;
+    border-top:1px solid var(--line);
+  }
+  .stack-row:last-child{ border-bottom:1px solid var(--line); }
+  .stack-row span:first-child{ color:var(--slate); }
+
+  /* ---------- projects ---------- */
+  .case{
+    border:1px solid var(--line);
+    padding:32px;
+    margin-bottom:24px;
+    background:var(--paper-2);
+    display:grid; grid-template-columns:1fr;
+    gap:18px;
+  }
+  .case-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--amber-deep);
+    display:flex; flex-wrap:wrap; gap:8px 20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+  }
+  .case-meta em{ font-style:normal; color:var(--slate); }
+  .case h3{
+    font-family:'Fraunces', serif; font-weight:500; font-size:22px;
+  }
+  .case p{ color:var(--ink-2); max-width:68ch; }
+  .case-link{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    text-decoration:none; border-bottom:1px solid var(--ink);
+    align-self:start;
+  }
+  .case-link:hover{ color:var(--amber-deep); border-color:var(--amber-deep); }
+  .status-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:400;
+    color:var(--slate); text-transform:none; letter-spacing:0;
+    vertical-align:middle; margin-left:10px;
+  }
+  .case-note{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    color:var(--slate); align-self:start;
+  }
+
+  .grid-projects{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
+  }
+  .mini-card{
+    border:1px solid var(--line);
+    padding:22px;
+    transition:border-color .15s ease;
+  }
+  .mini-card:hover{ border-color:var(--ink); }
+  .mini-card .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    color:var(--amber-deep); text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .mini-card h4{
+    font-family:'Fraunces', serif; font-weight:500; font-size:18px;
+    margin:10px 0 8px;
+  }
+  .mini-card p{ font-size:14px; color:var(--slate); margin-bottom:14px; }
+  .mini-card a{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    text-decoration:none; border-bottom:1px solid var(--slate);
+  }
+  .mini-card a:hover{ color:var(--ink); border-color:var(--ink); }
+
+  /* ---------- contact ---------- */
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:30px;
+  }
+  section.dark h2{ color:var(--paper); }
+  section.dark p{ color:#C9CDD4; max-width:48ch; }
+  .contact-links{ display:flex; gap:26px; flex-wrap:wrap; }
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace; font-size:14px;
+    text-decoration:none; color:var(--paper);
+    border-bottom:1px solid rgba(245,242,234,0.4);
+  }
+  .contact-links a:hover{ border-color:var(--amber); color:var(--amber); }
+
+  footer{
+    padding:28px 0; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--slate);
+    background:var(--ink);
+  }
+
+  @media (max-width:480px){
+    .stack-row{ grid-template-columns:110px 1fr; gap:12px; }
+  }
+  @media (max-width:760px){
+    .about-grid{ grid-template-columns:1fr; }
+    .grid-projects{ grid-template-columns:1fr; }
+    nav ul{ display:none; }
+    .hero-signal{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><b>giorgia</b>.bondandini</a>
+    <nav>
+      <ul>
+        <li><a href="#about">Chi sono</a></li>
+        <li><a href="#projects">Progetti</a></li>
+        <li><a href="#skills">Competenze</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-signal" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="0,320 40,300 80,330 120,260 160,280 200,180 240,210 280,120 320,150 360,60 400,90"
+      fill="none" stroke="#EAA429" stroke-width="2" opacity="0.6"/>
+    <polyline points="0,360 40,350 80,355 120,330 160,340 200,300 240,310 280,270 320,280 360,240 400,255"
+      fill="none" stroke="#4A4530" stroke-width="1.5" opacity="0.25"/>
+    <circle cx="400" cy="90" r="4" fill="#EAA429"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Data scientist · Torino</div>
+    <h1 class="name">Trasformo dati in decisioni <br>e aiuto a digitalizzare processi.</h1>
+    <p class="tagline">Formazione da ingegnere gestionale, specializzazione in Data Science. Mi occupo di analisi predittiva e automazione.</p>
+    <div class="hero-meta">
+      <span><b>Stack</b> — Python · SQL · TensorFlow · PyTorch · Scikit-learn</span>
+      <span><b>Focus</b> — dati urbani, energia, banking</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="#projects">Vedi i progetti</a>
+      <a class="btn" href="https://github.com/GioBondandini" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Chi sono</h2>
+      <span class="section-tag">Profilo</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Sono una Data Scientist con background in Ingegneria Gestionale (BSc e MSc, Politecnico di Torino) e un Master in Data Science - Machine Learning. Questo percorso ibrido mi permette di muovermi con naturalezza tra il linguaggio del business e quello tecnico dei modelli.</p>
+        <p>Ho maturato esperienza come IT Business Analyst in Intesa Sanpaolo, come Product Innovation intern in Maserati e come Data & Operations Analyst.</p>
+      </div>
+      <div class="stack-list">
+        <div class="stack-row"><span>Linguaggi</span><span>Python, SQL, C##</span></div>
+        <div class="stack-row"><span>ML / DL</span><span>Scikit-learn, TensorFlow, PyTorch</span></div>
+        <div class="stack-row"><span>Dati</span><span>Feature engineering, Serie storiche</span></div>
+        <div class="stack-row"><span>Visualizzazione</span><span>Plotly, Seaborn, Folium</span></div>
+        <div class="stack-row"><span>Lingue</span><span>Italiano, Inglese</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Progetti selezionati</h2>
+      <span class="section-tag">Case study</span>
+    </div>
+
+    <div class="case">
+      <div class="case-meta">
+        <span>Ambito: <em>Comune di Bologna</em></span>
+        <span>Task: <em>Rilevamento anomalie di traffico</em></span>
+        <span>Stack: <em>Python · Plotly · Folium</em></span>
+      </div>
+      <h3>Traffic Anomaly Detection</h3>
+      <p>Sistema di rilevamento anomalie sul traffico urbano basato su dati di sensori a induzione con granularità oraria, arricchiti con feature di eventi cittadini (partite, fiere). Include caching, feature engineering e mappatura dei sensori con visualizzazioni interattive.</p>
+      <a class="case-link" href="https://github.com/GioBondandini/TrafficAnomalyDetection" target="_blank" rel="noopener">Vedi il repository ↗</a>
+    </div>
+
+    <div class="case">
+      <div class="case-meta">
+        <span>Ambito: <em>Torino</em></span>
+        <span>Task: <em>Mappatura isole di calore urbane</em></span>
+        <span>Stack: <em>Python · dati satellitari · GeoPandas</em></span>
+      </div>
+      <h3>UrbanHeat Torino <span class="status-tag">— in corso</span></h3>
+      <p>Progetto per mappare le isole di calore urbane a Torino a partire da dati satellitari di temperatura superficiale, incrociati con uso del suolo e copertura verde, con l'obiettivo di individuare le aree più esposte al calore e supportare scelte di pianificazione urbana.</p>
+      <span class="case-note">Repository in arrivo</span>
+    </div>
+
+    <div class="case">
+      <div class="case-meta">
+        <span>Cliente: <em>SIRT S.r.l.</em></span>
+        <span>Task: <em>Automazione documentale</em></span>
+        <span>Stack: <em>Python · Resend · pdfplumber</em></span>
+      </div>
+      <h3>Convertitore ordini fornitori → EDI</h3>
+      <p>Strumento che recupera automaticamente le conferme d'ordine dei fornitori arrivate via email tramite l'API di Resend e le converte da PDF in file EDI <code>.ANG</code> (formato ANGAISA 1.2). Utilizzati script Python dedicati al parsing e alla generazione dell'output, uno per ciascun fornitore.</p>
+    </div>
+
+    <div class="grid-projects">
+      <div class="mini-card">
+        <span class="tag">Machine learning</span>
+        <h4>Fraud Detection</h4>
+        <p>Rilevamento di transazioni bancarie fraudolente su dati di pagamenti tra clienti e merchant.</p>
+        <a href="https://github.com/GioBondandini/FraudDetection" target="_blank" rel="noopener">Repository ↗</a>
+      </div>
+      <div class="mini-card">
+        <span class="tag">Forecasting</span>
+        <h4>BforBirra</h4>
+        <p>Previsione delle vendite di birra a partire da dati aperti su temperatura, umidità e precipitazioni.</p>
+        <a href="https://github.com/GioBondandini/BforBirra" target="_blank" rel="noopener">Repository ↗</a>
+      </div>
+      <div class="mini-card">
+        <span class="tag">ML end-to-end</span>
+        <h4>Ames Housing</h4>
+        <p>Progetto end-to-end per la previsione del prezzo di vendita di abitazioni sul dataset Ames Housing.</p>
+        <a href="https://github.com/GioBondandini/AmesHousing" target="_blank" rel="noopener">Repository ↗</a>
+      </div>
+      <div class="mini-card">
+        <span class="tag">Analisi statistica</span>
+        <h4>OLS Analysis</h4>
+        <p>Analisi delle retribuzioni di lavoratori in Thailandia per studiare l'effetto del genere sul salario.</p>
+        <a href="https://github.com/GioBondandini/OLS-Analysis" target="_blank" rel="noopener">Repository ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Competenze</h2>
+      <span class="section-tag">Toolkit</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Lavoro sull'intero ciclo di un progetto dati: dalla raccolta ed esplorazione, alla costruzione di modelli predittivi.</p>
+        <p>Mi appassionano i progetti dove tecnica e organizzazione si intrecciano.</p>
+      </div>
+      <div class="stack-list">
+        <div class="stack-row"><span>Machine learning</span><span>Modelli supervisionati, serie storiche</span></div>
+        <div class="stack-row"><span>Deep learning</span><span>Reti neurali, NLP applicato</span></div>
+        <div class="stack-row"><span>Analisi geospaziale</span><span>Dati urbani, mappe interattive</span></div>
+        <div class="stack-row"><span>Comunicazione</span><span>Storytelling dei dati per stakeholder non tecnici</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="contact">
+  <div class="wrap">
+    <div class="contact-row">
+      <div>
+        <div class="eyebrow" style="color:#EAA429;">Contatti</div>
+        <h2>Conosciamoci</h2>
+        <p>Data scientist disponibile per progetti di analisi dati e automazione. Torino, Milano o remoto.</p>
+      </div>
+      <div class="contact-links">
+        <a href="tel:+393483248638">Tel · 348 324 8638</a>
+        <a href="mailto:giorgia.bondandini@gmail.com">Email ↗</a>
+        <a href="https://www.linkedin.com/in/giorgia-bondandini-a14041197/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/GioBondandini" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Giorgia Bondandini
+</footer>
+
+</body>
+</html>
